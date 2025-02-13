@@ -57,9 +57,7 @@ const styleSrcUrls = [
 ]
 const connectSrcUrls = [
     'self',
-    'http://127.0.0.1:3000', // Allow requests to your backend
     'ws://localhost:1234',
-    'http://localhost:3000', // In case your frontend calls this instead
     'https://api.stripe.com/', // stripe
     'https://js.stripe.com/', // stripe
     'https://a.tiles.mapbox.com/',
