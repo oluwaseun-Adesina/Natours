@@ -35,7 +35,7 @@ app.use(
     cors({
         origin: 'http://localhost:3000',
         methods: 'GET, POST, PATCH, DELETE',
-        credentials: true,
+        credentials: true
     })
 )
 
@@ -47,13 +47,13 @@ const scriptSrcUrls = [
     'https://cdn.jsdelivr.net/',
     'https://cdnjs.cloudflare.com/ajax/libs/axios/',
     // add stripe
-    'https://js.stripe.com/', // stripe
+    'https://js.stripe.com/' // stripe
 
 ]
 const styleSrcUrls = [
     'https://api.mapbox.com/',
     'https://api.tiles.mapbox.com/',
-    'https://fonts.googleapis.com/',
+    'https://fonts.googleapis.com/'
 ]
 const connectSrcUrls = [
     'self',
@@ -64,7 +64,7 @@ const connectSrcUrls = [
     'https://b.tiles.mapbox.com/',
     'https://events.mapbox.com/',
     'https://cdnjs.cloudflare.com/ajax/libs/axios/',
-    'https://api.mapbox.com/',
+    'https://api.mapbox.com/'
 ]
 
 const frameSrcUrls = ['https://js.stripe.com/']
