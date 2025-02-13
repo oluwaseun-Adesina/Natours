@@ -14,10 +14,7 @@ dotenv.config()
 // )
 const DB = process.env.DATABASE_LOCAL
 
-// console.log(DB)
-
 mongoose.connect(DB).then(() => console.log('DB connection successful!'))
-// .catch((err) => console.log(err))
 
 const app = require('./app')
 

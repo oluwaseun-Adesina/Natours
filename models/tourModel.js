@@ -180,10 +180,10 @@ tourSchema.pre(/^find/, function (next) {
 
     next()
 })
-tourSchema.post(/^find/, function (docs, next) {
-    console.log(`Query took ${Date.now() - this.start} Milliseconds`)
-    next()
-})
+// tourSchema.post(/^find/, function (docs, next) {
+//     console.log(`Query took ${Date.now() - this.start} Milliseconds`)
+//     next()
+// })
 
 // aggregation middleware
 // tourSchema.pre('aggregate', function (next) {

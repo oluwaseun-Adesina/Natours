@@ -5,6 +5,7 @@ const rateLimit = require('express-rate-limit')
 const helmet = require('helmet')
 const mongoSanitize = require('express-mongo-sanitize')
 const cors = require('cors')
+const compression = require('compression')
 // const xss = require('xss')
 const cookieParser = require('cookie-parser')
 const hpp = require('hpp')
@@ -55,12 +56,11 @@ const styleSrcUrls = [
     'https://fonts.googleapis.com/',
 ]
 const connectSrcUrls = [
+    'self',
     'http://127.0.0.1:3000', // Allow requests to your backend
-    'ws://127.0.0.1:55156/', // bundle js
-    "ws://127.0.0.1:50298/",
-    'ws://127.0.0.1:62255/',
+    'ws://localhost:*', // Allow all WebSocket connections from localhost
+    'ws://127.0.0.1:*', // Allow WebSocket connections using IP-based localhost
     'http://localhost:3000', // In case your frontend calls this instead
-    // add stripe
     'https://api.stripe.com/', // stripe
     'https://js.stripe.com/', // stripe
     'https://a.tiles.mapbox.com/',
@@ -134,6 +134,8 @@ app.use(
         ], // fields allowed to be sanitized
     })
 )
+
+app.use(compression())
 
 // test middleware
 app.use((req, res, next) => {
