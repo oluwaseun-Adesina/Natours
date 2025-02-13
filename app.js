@@ -56,16 +56,19 @@ const styleSrcUrls = [
     'https://fonts.googleapis.com/'
 ]
 const connectSrcUrls = [
-    'self',
-    'ws://localhost:1234',
-    'https://api.stripe.com/', // stripe
-    'https://js.stripe.com/', // stripe
-    'https://a.tiles.mapbox.com/',
-    'https://b.tiles.mapbox.com/',
-    'https://events.mapbox.com/',
-    'https://cdnjs.cloudflare.com/ajax/libs/axios/',
-    'https://api.mapbox.com/'
-]
+    "'self'",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+    ...(process.env.NODE_ENV === "development" ? ["ws://localhost:1234"] : []), // Parcel HMR only in dev
+    "https://api.stripe.com/",
+    "https://js.stripe.com/",
+    "https://a.tiles.mapbox.com/",
+    "https://b.tiles.mapbox.com/",
+    "https://events.mapbox.com/",
+    "https://cdnjs.cloudflare.com/ajax/libs/axios/",
+    "https://api.mapbox.com/",
+];
+
 
 const frameSrcUrls = ['https://js.stripe.com/']
 const fontSrcUrls = ['fonts.googleapis.com', 'fonts.gstatic.com']
