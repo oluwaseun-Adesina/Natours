@@ -14,11 +14,14 @@ const tourRouter = require('./routes/tourRoutes')
 const userRouter = require('./routes/userRoutes')
 const reviewRouter = require('./routes/reviewRoutes')
 const bookingRouter = require('./routes/bookingRoutes')
+const bookingController = require('./controllers/bookingController')
 const viewRouter = require('./routes/viewRoutes')
 const AppError = require('./utils/appError')
 const globalErrorHandler = require('./controllers/errorController')
 
 const app = express()
+app.enable('trust proxy') 
+app.disable('x-powered-by')
 
 app.set('view engine', 'pug')
 app.set('views', path.join(__dirname, 'views'))
@@ -31,13 +34,9 @@ app.use(express.static(path.join(__dirname, 'js')))
 app.use(express.static(path.join(__dirname, 'img')))
 
 // implement cors
-app.use(
-    cors({
-        origin: 'http://localhost:3000',
-        methods: 'GET, POST, PATCH, DELETE',
-        credentials: true
-    })
-)
+app.use(cors())
+
+app.options('*', cors())
 
 // security HTTP HEAD requests
 const scriptSrcUrls = [
@@ -104,6 +103,13 @@ const limiter = rateLimit({
 })
 
 app.use('/api', limiter)
+
+// stripe webhook, before body-parser, because stripe needs the body as stream
+app.post(
+    '/webhook-checkout',
+    express.raw({ type: 'application/json' }),
+    bookingController.webhookCheckout
+)
 
 // body parsing, reading data from the body into req.body
 app.use(
