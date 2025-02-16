@@ -20,7 +20,7 @@ const AppError = require('./utils/appError')
 const globalErrorHandler = require('./controllers/errorController')
 
 const app = express()
-// app.enable('trust proxy') 
+app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 app.disable('x-powered-by')
 
 app.set('view engine', 'pug')
